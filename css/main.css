@@ -83,10 +83,6 @@ html,body {
   transition: all 0.5s;
 }
 
-#v {
-  height: 100vh;
-}
-
 #backToContent {
   position: absolute;
   left: 2vh;
