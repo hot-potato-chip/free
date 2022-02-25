@@ -51,7 +51,7 @@ html,body {
   bottom: 0;
   width: 100vw;
   height:7vh;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   background-color: #f6f6f6;
 }
 
@@ -70,7 +70,7 @@ html,body {
 }
 
 .footBar .item img {
-  width: 40px;
+  width: 30px;
 }
 
 .cameraContainer {
