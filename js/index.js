@@ -5,48 +5,50 @@ window.addEventListener('load', () => {
   const backToContentEle = document.getElementById('backToContent')
   backToContentEle.addEventListener('click',hideCameraContainer)
 
-  !(function () {
-    // 老的浏览器可能根本没有实现 mediaDevices，所以我们可以先设置一个空的对象
-    if (navigator.mediaDevices === undefined) {
-        navigator.mediaDevices = {};
+  function getUserMedia(constraints, success, error) {
+    if (navigator.mediaDevices.getUserMedia) {
+      //最新的标准API
+      navigator.mediaDevices.getUserMedia({
+                  'audio':{ echoCancellation: false },
+                  'video':{ 'facingMode': { exact: "environment" } }
+              })
+              .then(success)
+              .catch(error)
+    } else if (navigator.webkitGetUserMedia) {
+      //webkit核心浏览器
+      navigator.webkitGetUserMedia(constraints, success, error)
+    } else if (navigator.mozGetUserMedia) {
+      //firfox浏览器
+      navigator.mozGetUserMedia(constraints, success, error);
+    } else if (navigator.getUserMedia) {
+      //旧版API
+      navigator.getUserMedia(constraints, success, error);
     }
-    if (navigator.mediaDevices.getUserMedia === undefined) {
-        navigator.mediaDevices.getUserMedia = function (constraints) {
-            // 首先，如果有getUserMedia的话，就获得它
-            var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  }
 
-            // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
-            if (!getUserMedia) {
-                return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-            }
+  let video = document.getElementById('video');
 
-            // 否则，为老的navigator.getUserMedia方法包裹一个Promise
-            return new Promise(function (resolve, reject) {
-                getUserMedia.call(navigator, constraints, resolve, reject);
-            });
-        }
-    }
-    const constraints = {
-        video: true,
-        audio: false
-    };
-    let promise = navigator.mediaDevices.getUserMedia(constraints);
-    promise.then(stream => {
-        let v = document.getElementById('v');
-        // 旧的浏览器可能没有srcObject
-        if ("srcObject" in v) {
-            v.srcObject = stream;
-        } else {
-            // 防止再新的浏览器里使用它，应为它已经不再支持了
-            v.src = window.URL.createObjectURL(stream);
-        }
-        v.onloadedmetadata = function (e) {
-            v.play();
-        };
-    }).catch(err => {
-        console.error(err.name + ": " + err.message);
-    })
-})();
+  function success(stream) {
+    //兼容webkit核心浏览器
+    let CompatibleURL = window.URL || window.webkitURL;
+    //将视频流设置为video元素的源
+    console.log(stream);
+
+    //video.src = CompatibleURL.createObjectURL(stream);
+    video.srcObject = stream;
+    video.play();
+  }
+
+  function error(error) {
+    console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
+  }
+
+  if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
+    //调用用户媒体设备, 访问摄像头
+    getUserMedia({ video: { width: 480, height: 320 } }, success, error);
+  } else {
+    alert('不支持访问用户媒体');
+  }
 })
 
 function showCameraContainer() {
