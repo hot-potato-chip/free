@@ -17,14 +17,14 @@ html,body {
   justify-content: space-between;
   box-sizing: border-box;
   width: 100vw;
-  height: 7vh;
+  height: 8vh;
   padding: 0 2vh;
   margin-bottom: 1vh;
   background-color: #fff;
 }
 
 .contentContainer .item img {
-  height: 2.4vh;
+  height: 3vh;
 }
 
 #scan {
@@ -38,7 +38,7 @@ html,body {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 7vh;
+  height: 8vh;
 }
 
 #scan:hover::after,#scan:active::after {
@@ -50,7 +50,7 @@ html,body {
   left: 0;
   bottom: 0;
   width: 100vw;
-  height:10vh;
+  height:7vh;
   padding-bottom: 40px;
   background-color: #f6f6f6;
 }
@@ -90,6 +90,6 @@ html,body {
 #backToContent {
   position: absolute;
   left: 2vh;
-  top: 10vh;
+  top: 2vh;
   z-index: 10;
 }
