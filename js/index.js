@@ -4,17 +4,19 @@ window.addEventListener('load', () => {
   scanELe.addEventListener('click', showCameraContainer)
 
   const backToContentEle = document.getElementById('backToContent')
-  backToContentEle.addEventListener('click',hideCameraContainer)
+  backToContentEle.addEventListener('click', hideCameraContainer)
 })
 
-function setup () {
+function setup() {
   const video = document.getElementById('v')
   // 判断了浏览器是否支持挂载在MediaDevices.getUserMedia()的方法
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    const facingMode = { exact: 'environment' }
+    const facingMode = {
+      exact: 'environment'
+    }
     // 摄像头视频处理
     const handleSuccess = stream => {
-       if (video.srcObject !== undefined) {
+      if (video.srcObject !== undefined) {
         video.srcObject = stream;
       } else if (window.videoEl.mozSrcObject !== undefined) {
         video.mozSrcObject = stream;
@@ -28,11 +30,17 @@ function setup () {
     };
     // 捕获视频流
     navigator.mediaDevices
-      .getUserMedia({ video: { facingMode } })
+      .getUserMedia({
+        video: {
+          facingMode
+        }
+      })
       .then(handleSuccess)
       .catch(() => {
         navigator.mediaDevices
-          .getUserMedia({ video: true })
+          .getUserMedia({
+            video: true
+          })
           .then(handleSuccess)
           .catch(error => {
             console.log("error-captured", error);
