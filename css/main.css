@@ -1,0 +1,95 @@
+html,body {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ededed;
+  overflow: hidden;
+  --cameraTrans:100%;
+}
+
+.contentContainer .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 7vh;
+  padding: 0 2vh;
+  margin-bottom: 1vh;
+  background-color: #fff;
+}
+
+.contentContainer .item img {
+  height: 2.4vh;
+}
+
+#scan {
+  position: relative;
+}
+
+#scan::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 7vh;
+}
+
+#scan:hover::after,#scan:active::after {
+  background-color: rgba(230,230,230,0.4);
+}
+
+.foot {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height:10vh;
+  padding-bottom: 40px;
+  background-color: #f6f6f6;
+}
+
+.footBar {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+}
+
+.footBar .item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footBar .item img {
+  width: 40px;
+}
+
+.cameraContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translateX(var(--cameraTrans));
+  transition: all 0.5s;
+}
+
+#v {
+  height: 100vh;
+}
+
+#backToContent {
+  position: absolute;
+  left: 2vh;
+  top: 10vh;
+  z-index: 10;
+}
