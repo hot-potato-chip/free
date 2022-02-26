@@ -155,6 +155,7 @@ function tick() {
 
 function hideApp() {
   hideAppContainer()
+  setTitle("发现")
   var app = document.getElementById('app')
   app.style.display = "none"
 }
@@ -162,6 +163,7 @@ function hideApp() {
 function showApp() {
   const typeTextEle = document.getElementById('typeText')
   typeTextEle.innerText = type
+  setTitle("平安成电智慧通行")
   showAppContainer()
   setTimeout(() => {
     name_in();

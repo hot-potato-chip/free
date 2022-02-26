@@ -490,16 +490,15 @@ a[data-v-469af010] {
 }
 
 .info span[data-v-78b386c8] .icon {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   background-size: contain;
-  background-image: url(../平安成电智慧通行出_files/yonghu.png);
 }
 
 .info span[data-v-78b386c8]:nth-child(1){
     height: 37px;
-    font-size: 20px;
-    font-weight: 550;
+    font-size: 14px;
+    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
