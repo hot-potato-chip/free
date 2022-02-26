@@ -237,7 +237,7 @@ html,body {
 .cover .line {
   width: 100vw;
   height: 2px;
-  background: linear-gradient(to right, transparent, #479276, #1cc68f, #479276, transparent);
+  background: linear-gradient(to right, transparent, #1cc68f, #03c03c, #1cc68f, transparent);
   position: absolute;
   -webkit-animation: scan 1.75s infinite linear;
   -moz-animation: scan 1.75s infinite linear;

@@ -1,7 +1,9 @@
 const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
+const canvas2d = canvas.getContext('2d')
 let type = '平安成电智慧通行出'
+let timerID = undefined
 let studentName
 
 window.addEventListener('load', () => {
@@ -12,10 +14,6 @@ window.addEventListener('load', () => {
   scanELe.addEventListener('click', () => {
     setTitle('')
     showCameraContainer()
-    setTimeout(() => {
-      hideCameraContainer()
-      window.location.href = window.location.href + type;
-    },1000)
   })
 
   const backToContentEle = document.getElementById('backToContent')
@@ -33,9 +31,9 @@ function validate() {
   const btn = document.getElementById('validateBtn')
   const input = document.getElementById('validateInput')
   const p = document.querySelector('.validateContainer p')
-  btn.addEventListener('click',() => {
-    if(sha1(input.value) === CODE) {
-      window.localStorage.setItem('allow-pass-key','true')
+  btn.addEventListener('click', () => {
+    if (sha1(input.value) === CODE) {
+      window.localStorage.setItem('allow-pass-key', 'true')
       p.classList.add('welcome')
       hideValidateContainer()
     } else {
@@ -52,13 +50,13 @@ function initial() {
   if (window.localStorage && window.localStorage.getItem('name')) {
     nameInput.value = window.localStorage.getItem('name')
   }
-  btn.addEventListener('click',() => {
-    if(nameInput.value.trim().length === 0) {
+  btn.addEventListener('click', () => {
+    if (nameInput.value.trim().length === 0) {
       nameInput.value = ''
-      nameInput.setAttribute('placeholder','问你谁呢')
+      nameInput.setAttribute('placeholder', '问你谁呢')
     } else {
       studentName = nameInput.value.trim()
-      window.localStorage.setItem('name',nameInput.value.trim())
+      window.localStorage.setItem('name', nameInput.value.trim())
       type = typeSelect.value
       hideInitialContainer()
     }
@@ -123,11 +121,43 @@ function tick() {
   // 视频处于准备阶段，并且已经加载足够的数据
   if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
     // 开始在画布上绘制视频
-    canvas.drawImage(video, 0, 0, canvas.width, canvas.height);
-    run();
+    canvas2d.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = canvas2d.getImageData(0, 0, canvas.width, canvas.height);
+    let code = false;
+    try {
+      code = jsQR(imageData.data, imageData.width, imageData.height);
+    } catch (e) {
+      console.error(e);
+    }
+    if (code) {
+      drawBox(code.location)
+      if (!timerID) {
+        timerID = setTimeout(() => {
+          hideCameraContainer()
+          window.location.replace(window.location.href + type)
+        }, 1000)
+      }
+    }
   }
+  run();
 }
 
+// 画线
+function drawLine(begin, end) {
+  canvas2d.beginPath();
+  canvas2d.moveTo(begin.x, begin.y);
+  canvas2d.lineTo(end.x, end.y);
+  canvas2d.lineWidth = 2;
+  canvas2d.strokeStyle = '#03C03C';
+  canvas2d.stroke();
+}
+// 画框
+function drawBox(location) {
+  drawLine(location.topLeftCorner, location.topRightCorner);
+  drawLine(location.topRightCorner, location.bottomRightCorner);
+  drawLine(location.bottomRightCorner, location.bottomLeftCorner);
+  drawLine(location.bottomLeftCorner, location.topLeftCorner);
+}
 
 function showCameraContainer() {
   setCameraTrans('0%')
@@ -138,7 +168,7 @@ function hideCameraContainer() {
 }
 
 function setCameraTrans(val) {
-  setTrans('camera',val)
+  setTrans('camera', val)
 }
 
 function hideValidateContainer() {
@@ -146,7 +176,7 @@ function hideValidateContainer() {
 }
 
 function setValidateTrans(val) {
-  setTrans('validate',val)
+  setTrans('validate', val)
 }
 
 function hideInitialContainer() {
@@ -154,12 +184,12 @@ function hideInitialContainer() {
 }
 
 function setInitialTrans(val) {
-  setTrans('initial',val)
+  setTrans('initial', val)
 }
 
-function setTrans(name,val) {
+function setTrans(name, val) {
   const container = document.querySelector('.container')
-  container.style.setProperty('--'+name+'Trans', val)
+  container.style.setProperty('--' + name + 'Trans', val)
 }
 
 function setTitle(val) {
