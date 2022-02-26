@@ -142,6 +142,7 @@ function tick() {
         timerID = setTimeout(() => {
           hideCameraContainer()
           window.location.assign(window.location.href + type)
+          timerID = undefined
         }, 1000)
       }
     }
