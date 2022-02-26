@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
 
   const backToContentEle = document.getElementById('backToContent')
   backToContentEle.addEventListener('click', () => {
-    setTitle('出现')
+    setTitle('发现')
     hideCameraContainer()
   })
 })
