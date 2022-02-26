@@ -234,3 +234,69 @@ html,body {
   z-index: 10;
 }
 
+.cameraContainer .description {
+  position: absolute;
+  left: 0;
+  bottom: 28vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 3.5vh;
+  z-index: 10;
+}
+
+.cameraContainer .description p {
+  font-family: "PingFang SC","STHeiti","SimHei";
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+}
+
+.cameraContainer .icons {
+  position: absolute;
+  bottom:20vh;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 6vh;
+  box-sizing: border-box;
+  padding:0 2.5vh;
+  z-index: 10;
+}
+
+.cameraContainer .icons .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 50%;
+  background-color: rgba(230, 230, 230, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.cameraContainer .icons .icon img{
+  width: 60%;
+}
+
+.cameraContainer .foot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  width: 100vw;
+  background-color: #010100;
+  z-index: 10;
+}
+
+.cameraContainer .foot img {
+  height: 5vh;
+  transform: translateX(30%);
+}
