@@ -14,6 +14,7 @@ window.addEventListener('load', () => {
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', () => {
     setTitle('')
+    showCameraContainer()
     cameraContainerShow = true
   })
 
@@ -21,6 +22,7 @@ window.addEventListener('load', () => {
   backToContentEle.addEventListener('click', () => {
     setTitle('发现')
     hideCameraContainer()
+    cameraContainerShow = false
   })
 
   const closeAppEle = document.getElementById('closeApp')
@@ -126,10 +128,6 @@ function tick() {
   canvas.height = document.documentElement.clientHeight * 0.85
   // 视频处于准备阶段，并且已经加载足够的数据
   if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
-    if (cameraContainerShow) {
-      showCameraContainer()
-      cameraContainerShow = false
-    }
     // 开始在画布上绘制视频
     canvas2d.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageData = canvas2d.getImageData(0, 0, canvas.width, canvas.height);
@@ -141,7 +139,7 @@ function tick() {
     }
     if (code) {
       drawBox(code.location)
-      if (!timerID && !cameraContainerShow) {
+      if (!timerID && cameraContainerShow) {
         timerID = setTimeout(() => {
           showApp()
           hideCameraContainer()
