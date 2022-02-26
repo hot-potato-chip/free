@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
     showCameraContainer()
     setTimeout(() => {
       window.location.pathname = type
-    },500)
+    },1000)
   })
 
   const backToContentEle = document.getElementById('backToContent')
