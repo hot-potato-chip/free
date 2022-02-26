@@ -1,15 +1,23 @@
 const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
+let type = '出校'
 
 window.addEventListener('load', () => {
   validate()
+  initial()
   setup()
   const scanELe = document.getElementById('scan')
-  scanELe.addEventListener('click', showCameraContainer)
+  scanELe.addEventListener('click', () => {
+    setTitle('')
+    showCameraContainer()
+  })
 
   const backToContentEle = document.getElementById('backToContent')
-  backToContentEle.addEventListener('click', hideCameraContainer)
+  backToContentEle.addEventListener('click', () => {
+    setTitle('出现')
+    hideCameraContainer()
+  })
 })
 
 function validate() {
@@ -28,6 +36,25 @@ function validate() {
     } else {
       input.value = ""
       p.classList.remove('welcome')
+    }
+  })
+}
+
+function initial() {
+  const nameInput = document.getElementById('name')
+  const btn = document.getElementById('finishInitialBtn')
+  const typeSelect = document.getElementById('type')
+  if (window.localStorage && window.localStorage.getItem('name')) {
+    nameInput.value = window.localStorage.getItem('name')
+  }
+  btn.addEventListener('click',() => {
+    if(nameInput.value.trim().length === 0) {
+      nameInput.value = ''
+      nameInput.setAttribute('placeholder','问你谁呢')
+    } else {
+      window.localStorage.setItem('name',nameInput.value.trim())
+      type = typeSelect.value
+      hideInitialContainer()
     }
   })
 }
@@ -116,7 +143,19 @@ function setValidateTrans(val) {
   setTrans('validate',val)
 }
 
+function hideInitialContainer() {
+  setInitialTrans('-100%')
+}
+
+function setInitialTrans(val) {
+  setTrans('initial',val)
+}
+
 function setTrans(name,val) {
   const container = document.querySelector('.container')
   container.style.setProperty('--'+name+'Trans', val)
+}
+
+function setTitle(val) {
+  document.title = val
 }

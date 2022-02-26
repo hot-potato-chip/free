@@ -62,13 +62,28 @@
         </li>
       </ul>
     </div>
+    <div class="initialContainer">
+      <div class="card">
+        <div>
+          <label for="name">
+            姓名
+          </label>
+          <input type="text" id="name" placeholder="你谁啊">
+        </div>
+        <div>
+          <label for="type">类型</label>
+          <select name="type" id="type">
+            <option value="出校" selected>出校</option>
+            <option value="进校">进校</option>
+          </select>
+        </div>
+        <button id="finishInitialBtn">完成</button>
+      </div>
+    </div>
     <div class="validateContainer">
       <p class="welcome"><span>不</span>歡迎來到米奇妙妙屋</p>
       <input type="password" id="validateInput" placeholder="-------">
       <button id="validateBtn">-開門-</button>
-    </div>
-    <div class="initialContainer">
-      <p></p>
     </div>
     <div class="cameraContainer">
       <svg id="backToContent" t="1645790777668" class="icon" viewBox="0 0 1024 1024" version="1.1"
