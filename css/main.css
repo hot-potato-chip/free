@@ -237,7 +237,7 @@ html,body {
 .cameraContainer .description {
   position: absolute;
   left: 0;
-  bottom: 35vh;
+  bottom: 33vh;
   display: flex;
   align-items: center;
   justify-content: center;
