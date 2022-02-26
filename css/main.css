@@ -250,7 +250,7 @@ html,body {
   font-family: "PingFang SC","STHeiti","SimHei";
   font-weight: bold;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .cameraContainer .icons {
@@ -297,6 +297,6 @@ html,body {
 }
 
 .cameraContainer .foot img {
-  height: 5vh;
-  transform: translateX(30%);
+  height: 6vh;
+  transform: translateX(30%) translateY(-20%);
 }
