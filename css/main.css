@@ -480,6 +480,7 @@ a[data-v-469af010] {
 .info[data-v-78b386c8]{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 20px;
     padding-bottom: 10px;
 }
@@ -487,10 +488,22 @@ a[data-v-469af010] {
     background-color: #fff;
     padding-top: 10px;
 }
+
+.info span[data-v-78b386c8] .icon {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-image: url(../平安成电智慧通行出_files/yonghu.png);
+}
+
 .info span[data-v-78b386c8]:nth-child(1){
-    line-height: 37px;
-    font-size: 15px;
+    height: 37px;
+    font-size: 20px;
     font-weight: 550;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px
 }
 .info span[data-v-78b386c8]:nth-child(2){
     font-size: 25px;
@@ -498,7 +511,7 @@ a[data-v-469af010] {
     align-items: center;
 }
 .education[data-v-78b386c8]{
-    color:2c3e50;
+    color:#2c3e50;
     padding-right: 20px;
 }
 #time[data-v-78b386c8]{
