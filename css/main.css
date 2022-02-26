@@ -237,7 +237,7 @@ html,body {
 .cameraContainer .description {
   position: absolute;
   left: 0;
-  bottom: 28vh;
+  bottom: 35vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,6 +297,6 @@ html,body {
 }
 
 .cameraContainer .foot img {
-  height: 6vh;
+  height: 5vh;
   transform: translateX(30%) translateY(-20%);
 }
