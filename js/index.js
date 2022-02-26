@@ -143,11 +143,18 @@ function tick() {
           hideCameraContainer()
           window.location.assign(window.location.href + type)
           timerID = undefined
+          fullStop()
         }, 1000)
       }
     }
   }
   run();
+}
+
+function fullStop () {
+  if (video && video.srcObject) {
+    video.srcObject.getTracks().forEach(t => t.stop());
+  }
 }
 
 // 画线
