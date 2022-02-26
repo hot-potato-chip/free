@@ -234,6 +234,24 @@ html,body {
   z-index: 10;
 }
 
+.cover .line {
+  width: 100vw;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #479276, #1cc68f, #479276, transparent);
+  position: absolute;
+  -webkit-animation: scan 1.75s infinite linear;
+  -moz-animation: scan 1.75s infinite linear;
+  -ms-animation: scan 1.75s infinite linear;
+  -o-animation: scan 1.75s infinite linear;
+  animation: scan 1.75s infinite linear;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  border-radius: 2px;
+}
+
 .cameraContainer .description {
   position: absolute;
   left: 0;
@@ -299,4 +317,33 @@ html,body {
 .cameraContainer .foot img {
   height: 5vh;
   transform: translateX(30%) translateY(-20%);
+}
+
+@-webkit-keyframes scan {
+  0% {top: 200px}
+  25% {top: 250px}
+  50% {top: 300px}
+  75% {top: 350px}
+  100% {top: 400px}
+}
+@-moz-keyframes scan {
+  0% {top: 200px}
+  25% {top: 250px}
+  50% {top: 300px}
+  75% {top: 350px}
+  100% {top: 400px}
+}
+@-o-keyframes scan {
+  0% {top: 200px}
+  25% {top: 250px}
+  50% {top: 300px}
+  75% {top: 350px}
+  100% {top: 400px}
+}
+@keyframes scan {
+  0% {top: 200px}
+  25% {top: 250px}
+  50% {top: 300px}
+  75% {top: 350px}
+  100% {top: 400px}
 }
