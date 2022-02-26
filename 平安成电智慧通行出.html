@@ -181,10 +181,10 @@ img{
 vertical-align:middle;
 }
 #app{
-	display:none;
+	display:block;
 }
 #name_get{
-	display:block;
+	display:none;
 }
 </style>
 <style type="text/css">.dictionaries-tooltip {
@@ -449,15 +449,9 @@ function doMove(){
 	window.setTimeout("doMove()",30);
 }
 function name_in(){
-	var utext = document.getElementById("uname");
-	var text = utext.value;
-	var name = document.getElementById("realname");
-	var app = document.getElementById("app");
-	var name_get =document.getElementById("name_get");
+  var name = document.getElementById("realname");
+	var text = window.localStorage.getItem("name")
 	name.innerHTML = text;
-	name_get.style.display = "none";
-	app.style.display = "block";
-
 }
 function addZero(i) {
   if (i < 10) {
@@ -465,6 +459,7 @@ function addZero(i) {
   }
   return i;
 }
+name_in();
 getTime();
 doMove();
 </script>

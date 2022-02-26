@@ -1,7 +1,7 @@
 const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
-let type = '出校'
+let type = '/平安成电智慧通行出'
 let studentName
 
 window.addEventListener('load', () => {
@@ -12,6 +12,9 @@ window.addEventListener('load', () => {
   scanELe.addEventListener('click', () => {
     setTitle('')
     showCameraContainer()
+    setTimeout(() => {
+      window.location.pathname = type
+    },500)
   })
 
   const backToContentEle = document.getElementById('backToContent')

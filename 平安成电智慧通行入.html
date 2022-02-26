@@ -181,10 +181,10 @@ img{
 vertical-align:middle;
 }
 #app{
-	display:none;
+	display:block;
 }
 #name_get{
-	display:block;
+	display:none;
 }
 </style>
 <style type="text/css">.dictionaries-tooltip {
@@ -392,7 +392,7 @@ iframe.dictionaries-card.dictionaries-card-minimal {
 					</div>
 					<div class="info" data-v-78b386c8="">
 						<span data-v-78b386c8="">
-							<img width="12" alt="" src="./平安成电智慧通行入_files/user-group-fill.02d9192d.png" data-v-78b386c8=""> 
+							<img width="12" alt="" src="./平安成电智慧通行入_files/user-group-fill.02d9192d.png" data-v-78b386c8="">
 							登记类型
 						</span>
 						<span class="education" data-v-78b386c8="">研究生（硕士）</span>
@@ -437,7 +437,7 @@ function getTime(){
 	time1.innerHTML = myYear+"-"+myMonth+"-"+myDay+" "+myHours+":"+myMinutes+":"+mySeconds;
 	time2.innerHTML = myYear+"-"+myMonth+"-"+myDay+" "+myHours+":"+myMinutes+":"+mySeconds;
 }
-function addZero(i) 
+function addZero(i)
 {
         if (i < 10) {
                         i = "0" + i;
@@ -456,16 +456,11 @@ function doMove(){
 	window.setTimeout("doMove()",30);
 }
 function name_in(){
-	var utext = document.getElementById("uname");
-	var text = utext.value;
 	var name = document.getElementById("realname");
-	var app = document.getElementById("app");
-	var name_get =document.getElementById("name_get");
+	var text = window.localStorage.getItem("name")
 	name.innerHTML = text;
-	name_get.style.display = "none";
-	app.style.display = "block";
-	
 }
+name_in()
 getTime();
 doMove();
 </script>
