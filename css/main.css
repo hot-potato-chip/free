@@ -490,14 +490,14 @@ a[data-v-469af010] {
 }
 
 .info span[data-v-78b386c8] .icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   background-size: contain;
 }
 
 .info span[data-v-78b386c8]:nth-child(1){
     height: 37px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     display: flex;
     justify-content: center;
