@@ -2,19 +2,19 @@ const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
 const canvas2d = canvas.getContext('2d')
-let type = '平安成电智慧通行出'
+let type = '研究生用户，出校登记成功！'
 let timerID = undefined
 let studentName
 let cameraContainerShow = false
 
 window.addEventListener('load', () => {
+  setup()
   validate()
   initial()
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', () => {
-    setup()
     setTitle('')
-    cameraContainerShow = false
+    cameraContainerShow = true
   })
 
   const backToContentEle = document.getElementById('backToContent')
@@ -22,6 +22,9 @@ window.addEventListener('load', () => {
     setTitle('发现')
     hideCameraContainer()
   })
+
+  const closeAppEle = document.getElementById('closeApp')
+  closeAppEle.addEventListener('click', hideApp)
 })
 
 function validate() {
@@ -123,9 +126,9 @@ function tick() {
   canvas.height = document.documentElement.clientHeight * 0.85
   // 视频处于准备阶段，并且已经加载足够的数据
   if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
-    if (!cameraContainerShow){
+    if (cameraContainerShow) {
       showCameraContainer()
-      cameraContainerShow = true
+      cameraContainerShow = false
     }
     // 开始在画布上绘制视频
     canvas2d.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -138,12 +141,12 @@ function tick() {
     }
     if (code) {
       drawBox(code.location)
-      if (!timerID) {
+      if (!timerID && !cameraContainerShow) {
         timerID = setTimeout(() => {
+          showApp()
           hideCameraContainer()
-          window.location.assign(window.location.href + type)
           timerID = undefined
-          fullStop()
+          //fullStop()
         }, 1000)
       }
     }
@@ -151,7 +154,24 @@ function tick() {
   run();
 }
 
-function fullStop () {
+function hideApp() {
+  hideAppContainer()
+  var app = document.getElementById('app')
+  app.style.display = "none"
+}
+
+function showApp() {
+  const typeTextEle = document.getElementById('typeText')
+  typeTextEle.innerText = type
+  showAppContainer()
+  setTimeout(() => {
+    name_in();
+    getTime();
+    doMove();
+  }, 500)
+}
+
+function fullStop() {
   if (video && video.srcObject) {
     video.srcObject.getTracks().forEach(t => t.stop());
   }
@@ -202,6 +222,18 @@ function setInitialTrans(val) {
   setTrans('initial', val)
 }
 
+function showAppContainer() {
+  setAppTrans('0%')
+}
+
+function hideAppContainer() {
+  setAppTrans('100%')
+}
+
+function setAppTrans(val) {
+  setTrans('app', val)
+}
+
 function setTrans(name, val) {
   const container = document.querySelector('.container')
   container.style.setProperty('--' + name + 'Trans', val)
@@ -209,4 +241,51 @@ function setTrans(name, val) {
 
 function setTitle(val) {
   document.title = val
+}
+
+function getTime() {
+  var myDate = new Date();
+  var myYear = myDate.getFullYear();
+  var myMonth = myDate.getMonth() + 1;
+  var myDay = myDate.getDate();
+  var myHours = myDate.getHours();
+  var myMinutes = addZero(myDate.getMinutes());
+  var mySeconds = myDate.getSeconds();
+  var time1 = document.getElementById("time1");
+  var time2 = document.getElementById("time2");
+  time1.innerHTML = myYear + "-" + myMonth + "-" + myDay + " " + myHours + ":" + myMinutes + ":" + mySeconds;
+  time2.innerHTML = myYear + "-" + myMonth + "-" + myDay + " " + myHours + ":" + myMinutes + ":" + mySeconds;
+}
+
+function doMove() {
+  var time1 = document.getElementById("time1");
+  var time2 = document.getElementById("time2");
+  var left1 = parseInt(time1.style.left) - 1;
+  if (left1 < -200) {
+    left1 = 0;
+  }
+  var left2 = parseInt(time2.style.left) - 1;
+  if (left2 < 0) {
+    left2 = 200;
+  }
+  time1.style.left = left1 + "px";
+  time2.style.left = left2 + "px";
+  window.setTimeout("doMove()", 30);
+}
+
+function name_in() {
+  var name = document.getElementById("realname");
+  var text = window.localStorage.getItem("name")
+  var app = document.getElementById('app')
+  name.innerHTML = text;
+  setTimeout(() => {
+    app.style.display = "block"
+  }, 750)
+}
+
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
 }
