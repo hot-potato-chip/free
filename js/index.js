@@ -5,15 +5,16 @@ const canvas2d = canvas.getContext('2d')
 let type = '平安成电智慧通行出'
 let timerID = undefined
 let studentName
+let cameraContainerShow = false
 
 window.addEventListener('load', () => {
   validate()
   initial()
-  setup()
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', () => {
+    setup()
     setTitle('')
-    showCameraContainer()
+    cameraContainerShow = false
   })
 
   const backToContentEle = document.getElementById('backToContent')
@@ -122,6 +123,10 @@ function tick() {
   canvas.height = document.documentElement.clientHeight * 0.85
   // 视频处于准备阶段，并且已经加载足够的数据
   if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
+    if (!cameraContainerShow){
+      showCameraContainer()
+      cameraContainerShow = true
+    }
     // 开始在画布上绘制视频
     canvas2d.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageData = canvas2d.getImageData(0, 0, canvas.width, canvas.height);
