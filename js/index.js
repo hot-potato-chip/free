@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
   setup()
   validate()
   initial()
+  doMove()
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', () => {
     setTitle('')
@@ -168,7 +169,6 @@ function showApp() {
   setTimeout(() => {
     name_in();
     getTime();
-    doMove();
   }, 500)
 }
 
