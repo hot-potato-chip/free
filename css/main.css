@@ -9,6 +9,7 @@ html,body {
   background-color: #ededed;
   overflow: hidden;
   --cameraTrans:100%;
+  --validateTrans:0%;
 }
 
 .contentContainer .item {
@@ -72,6 +73,66 @@ html,body {
 .footBar .item img {
   width: 30px;
 }
+
+.validateContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #06c15c;
+  transform: translateX(var(--validateTrans));
+  transition: all 0.5s;
+  font-family: "PingFang SC","STHeiti","SimHei";
+  color:white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.validateContainer p.welcome{
+  color:white;
+}
+
+.validateContainer p.welcome span{
+  display: none;
+}
+
+
+.validateContainer p {
+  color: brown;
+}
+
+#validateInput {
+  outline: none;
+  border: none;
+  width: 50vw;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#validateBtn {
+  border: none;
+  width: 50vw;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #06c15c;
+  background-color: white;
+  border-radius: 5px;
+}
+
+#validateBtn:active {
+  background-color: rgba(230,230,230,0.4);
+  transform: translate(2px,2px);
+}
+
 
 .cameraContainer {
   position: absolute;

@@ -1,7 +1,9 @@
+const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
 
 window.addEventListener('load', () => {
+  validate()
   setup()
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', showCameraContainer)
@@ -9,6 +11,21 @@ window.addEventListener('load', () => {
   const backToContentEle = document.getElementById('backToContent')
   backToContentEle.addEventListener('click', hideCameraContainer)
 })
+
+function validate() {
+  const btn = document.getElementById('validateBtn')
+  const input = document.getElementById('validateInput')
+  const p = document.querySelector('.validateContainer p')
+  btn.addEventListener('click',() => {
+    if(sha1(input.value) === CODE) {
+      p.classList.add('welcome')
+      hideValidateContainer()
+    } else {
+      input.value = ""
+      p.classList.remove('welcome')
+    }
+  })
+}
 
 // 初始化
 function setup() {
@@ -83,6 +100,18 @@ function hideCameraContainer() {
 }
 
 function setCameraTrans(val) {
+  setTrans('camera',val)
+}
+
+function hideValidateContainer() {
+  setValidateTrans('-100%')
+}
+
+function setValidateTrans(val) {
+  setTrans('validate',val)
+}
+
+function setTrans(name,val) {
   const container = document.querySelector('.container')
-  container.style.setProperty('--cameraTrans', val)
+  container.style.setProperty('--'+name+'Trans', val)
 }
