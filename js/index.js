@@ -147,7 +147,7 @@ function tick() {
           cameraContainerShow = false
           timerID = undefined
           //fullStop()
-        }, 1000)
+        }, 750)
       }
     }
   }
