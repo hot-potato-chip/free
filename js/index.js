@@ -13,11 +13,16 @@ window.addEventListener('load', () => {
 })
 
 function validate() {
+  if (window.localStorage && !!window.localStorage.getItem('allow-pass-key')) {
+    hideValidateContainer()
+    return
+  }
   const btn = document.getElementById('validateBtn')
   const input = document.getElementById('validateInput')
   const p = document.querySelector('.validateContainer p')
   btn.addEventListener('click',() => {
     if(sha1(input.value) === CODE) {
+      window.localStorage.setItem('allow-pass-key','true')
       p.classList.add('welcome')
       hideValidateContainer()
     } else {
