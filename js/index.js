@@ -143,6 +143,7 @@ function tick() {
         timerID = setTimeout(() => {
           showApp()
           hideCameraContainer()
+          cameraContainerShow = false
           timerID = undefined
           //fullStop()
         }, 1000)
