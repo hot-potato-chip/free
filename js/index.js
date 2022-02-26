@@ -10,10 +10,10 @@ window.addEventListener('load', () => {
   setup()
   const scanELe = document.getElementById('scan')
   scanELe.addEventListener('click', () => {
-    setup()
     setTitle('')
     showCameraContainer()
     setTimeout(() => {
+      hideCameraContainer()
       window.location.href = window.location.href + type;
     },1000)
   })
