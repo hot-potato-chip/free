@@ -118,6 +118,8 @@ function run() {
 
 // 周期性扫码识别
 function tick() {
+  canvas.width = document.documentElement.clientWidth
+  canvas.height = document.documentElement.clientHeight * 0.85
   // 视频处于准备阶段，并且已经加载足够的数据
   if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
     // 开始在画布上绘制视频
@@ -134,7 +136,7 @@ function tick() {
       if (!timerID) {
         timerID = setTimeout(() => {
           hideCameraContainer()
-          window.location.replace(window.location.href + type)
+          window.location.assign(window.location.href + type)
         }, 1000)
       }
     }

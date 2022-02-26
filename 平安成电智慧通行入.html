@@ -181,7 +181,7 @@ img{
 vertical-align:middle;
 }
 #app{
-	display:block;
+	display:none;
 }
 #name_get{
 	display:none;
@@ -458,7 +458,11 @@ function doMove(){
 function name_in(){
 	var name = document.getElementById("realname");
 	var text = window.localStorage.getItem("name")
+	var app = document.getElementById('app')
 	name.innerHTML = text;
+  setTimeout(() => {
+    app.style.display = "block"
+  },750)
 }
 name_in()
 getTime();
