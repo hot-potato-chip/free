@@ -1,7 +1,7 @@
 const CODE = "68903d3c283354a657d8039b4dcec2691a731f7e"
 const video = document.getElementById('v')
 const canvas = document.getElementById('c')
-let type = '/平安成电智慧通行出'
+let type = '/free/平安成电智慧通行出'
 let studentName
 
 window.addEventListener('load', () => {
