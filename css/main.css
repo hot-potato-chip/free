@@ -55,7 +55,8 @@ html,body {
   bottom: 0;
   width: 100vw;
   height:7vh;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
+  padding-top: 2px;
   background-color: #f6f6f6;
 }
 
