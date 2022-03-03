@@ -15,6 +15,19 @@ html,body {
   --appTrans:100%;
 }
 
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+  background-color: #ededed;
+}
+
+.top img {
+  width: 50px;
+}
+
 .contentContainer .item {
   display: flex;
   align-items: center;
@@ -54,7 +67,7 @@ html,body {
   left: 0;
   bottom: 0;
   width: 100vw;
-  height:7vh;
+  height:8vh;
   padding-bottom: 25px;
   padding-top: 2px;
   background-color: #f6f6f6;
