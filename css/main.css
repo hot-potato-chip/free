@@ -26,6 +26,7 @@ html,body {
 
 .top img {
   width: 40px;
+  transform: translateY(-2px);
 }
 
 .contentContainer .item {
