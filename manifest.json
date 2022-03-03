@@ -2,7 +2,7 @@
   "name": "微信",
   "short_name": "微信",
   "description": "Connect with friends, share what you're up to, or see what's new from others all over the world. Explore our community where you can feel free to be yourself and share everything from your daily moments to life's highlights.",
-  "start_url": "/",
+  "start_url": "/free",
   "orientation": "landscape-primary",
   "display": "minimal-ui",
   "background_color": "#ededed",
